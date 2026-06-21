@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @Repository
 public interface HistorialRepository extends JpaRepository<HistorialEntity, Long> {
-    @Query(value="SELECT h.id FROM historial h WHERE h.id = :id", nativeQuery=true)
-    Optional<HistorialEntity> getHistorial(@Param("id") Long id);
+
 }
+
+

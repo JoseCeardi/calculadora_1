@@ -1,31 +1,19 @@
-package com.example.calculadora.entities;
+package com.example.calculadora.entities
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Controller;
+import jakarta.persistence.*
+import java.time.LocalDateTime
 
-import java.time.LocalDateTime;
-
-@Data
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name="historial")
-public class HistorialEntity {
-    @Id
-    @Column(nullable=false, unique=true)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long  id;
+@Table(name = "historial")
+open class HistorialEntity(
 
-    @Column(nullable=false, unique=true)
-    private Integer posicion;
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        @Column(nullable = false, unique = true)
+        open var id: Long? = null,
 
-    private String descripcion;
-    private String ecuacion;
-    private String resultado;
-    private LocalDateTime fecha;
-}
-
-
+        open var descripcion: String? = null,
+        open var ecuacion: String? = null,
+        open var resultado: String? = null,
+        open var fecha: LocalDateTime? = null
+        )

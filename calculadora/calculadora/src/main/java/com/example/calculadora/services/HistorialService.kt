@@ -1,38 +1,35 @@
-package com.example.calculadora.services;
+package com.example.calculadora.services
 
-import com.example.calculadora.entities.HistorialEntity;
-import com.example.calculadora.repositories.HistorialRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
+import com.example.calculadora.entities.HistorialEntity
+import com.example.calculadora.repositories.HistorialRepository
+import org.springframework.data.repository.findByIdOrNull
+import org.springframework.stereotype.Service
+import java.time.LocalDateTime
 
 @Service
-public class HistorialService {
-    @Autowired
-    private HistorialRepository historialRepository;
+class HistorialService(
+        private val historialRepository: HistorialRepository
+) {
 
-    public Optional<HistorialEntity> getHistorial(Long id) {
-        return historialRepository.findById(id);
+    fun getHistorial(id: Long): HistorialEntity? =
+            historialRepository.findByIdOrNull(id)
+
+    fun getAllHistorials(): List<HistorialEntity> =
+            historialRepository.findAll()
+
+    fun createHistorial(historialEntity: HistorialEntity): HistorialEntity {
+
+        val historial = HistorialEntity(
+                descripcion = historialEntity.descripcion,
+                ecuacion = historialEntity.ecuacion,
+                resultado = historialEntity.resultado,
+                fecha = LocalDateTime.now()
+        )
+
+        return historialRepository.save(historial)
     }
 
-    public HistorialEntity createHistorial(@RequestBody HistorialEntity historialEntity) {
-        HistorialEntity historial = new HistorialEntity();
-        historial.setId(historial.getId());
-        historial.setDescripcion(historialEntity.getDescripcion());
-        historial.setEcuacion(historialEntity.getEcuacion());
-        historial.setPosicion(historialEntity.getPosicion());
-        historial.setResultado(historialEntity.getResultado());
-        historial.setFecha(LocalDateTime.now());
-        historialRepository.save(historial);
-        return historial;
+    fun getAllHistorialsOnDate(date: LocalDateTime): List<HistorialEntity> {
+        return historialRepository.findByFechaBefore(date)
     }
-
-    public List<HistorialEntity> getAllHistorials() {
-        return historialRepository.findAll();
-    }
-
 }

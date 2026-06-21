@@ -1,19 +1,12 @@
-package com.example.calculadora.repositories;
+package com.example.calculadora.repositories
 
-import com.example.calculadora.entities.HistorialEntity;
-import org.hibernate.dialect.identity.HSQLIdentityColumnSupport;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.NativeQuery;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
-
-import java.util.List;
-import java.util.Optional;
+import com.example.calculadora.entities.HistorialEntity
+import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.stereotype.Repository
+import java.time.LocalDateTime
 
 @Repository
-public interface HistorialRepository extends JpaRepository<HistorialEntity, Long> {
-
+interface HistorialRepository : JpaRepository<HistorialEntity, Long> {
+    fun findByFechaBefore(fecha: LocalDateTime): List<HistorialEntity>
 }
-
 

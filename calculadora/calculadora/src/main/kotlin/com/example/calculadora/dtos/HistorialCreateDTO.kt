@@ -1,4 +1,4 @@
-package com.example.calculadora.DTOs
+package com.example.calculadora.dtos
 
 data class HistorialCreateDTO(
         val descripcion: String,

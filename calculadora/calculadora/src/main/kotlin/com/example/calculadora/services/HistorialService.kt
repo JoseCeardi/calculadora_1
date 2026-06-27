@@ -20,10 +20,10 @@ class HistorialService(
     fun createHistorial(historialEntity: HistorialEntity): HistorialEntity {
 
         val historial = HistorialEntity(
-                descripcion = historialEntity.descripcion,
-                ecuacion = historialEntity.ecuacion,
-                resultado = historialEntity.resultado,
-                fecha = LocalDateTime.now()
+            descripcion = historialEntity.descripcion,
+            ecuacion = historialEntity.ecuacion,
+            resultado = historialEntity.resultado,
+            fecha = LocalDateTime.now()
         )
 
         return historialRepository.save(historial)

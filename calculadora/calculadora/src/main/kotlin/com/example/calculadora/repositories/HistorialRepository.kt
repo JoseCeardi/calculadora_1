@@ -8,5 +8,6 @@ import java.time.LocalDateTime
 @Repository
 interface HistorialRepository : JpaRepository<HistorialEntity, Long> {
     fun findByFechaBefore(fecha: LocalDateTime): List<HistorialEntity>
+    fun findByUserId(userId: Long): List<HistorialEntity>
 }
 
